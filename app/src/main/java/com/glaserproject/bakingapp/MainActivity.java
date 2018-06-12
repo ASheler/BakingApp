@@ -12,12 +12,15 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.glaserproject.bakingapp.AppConstants.AppConstants;
 import com.glaserproject.bakingapp.NetUtils.ATLoader;
 import com.glaserproject.bakingapp.NetUtils.AppExecutors;
 import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
@@ -48,6 +51,20 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
+    //calc the number of columns to create
+    public static int calculateNoColumns(Context context) {
+        //get Display Metrics
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        //min width for column
+        int scalingFactor = 400;
+        int noOfColumns = (int) (dpWidth / scalingFactor);
+        //set at least 2 columns
+        if (noOfColumns < 1)
+            noOfColumns = 1;
+        return noOfColumns;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         butterknife.ButterKnife.bind(this);
 
         //init rv
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, calculateNoColumns(this));
         recipeListRV.setLayoutManager(layoutManager);
         mAdapter = new RecipesAdapter(this);
         recipeListRV.setAdapter(mAdapter);
@@ -79,7 +96,7 @@ public class MainActivity extends AppCompatActivity
                 loaderManager.initLoader(FETCH_DATA_LOADER_ID, null, this).forceLoad();
             } else {
                 //restart loader
-                loaderManager.restartLoader(FETCH_DATA_LOADER_ID, null, this);
+                loaderManager.restartLoader(FETCH_DATA_LOADER_ID, null, this).forceLoad();
             }
 
             //if no connection, print toast
@@ -90,18 +107,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    }
-
-    //get recipes from ViewModel method
-    public void retrieveRecipes(){
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        viewModel.getRecipes().observe(this, new Observer<List<Recipe>>() {
-            @Override
-            public void onChanged(@Nullable List<Recipe> recipes) {
-                //set recipes to adapter
-                mAdapter.setRecipes(recipes);
-            }
-        });
     }
 
 
@@ -145,13 +150,33 @@ public class MainActivity extends AppCompatActivity
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
+    //get recipes from ViewModel method
+    public void retrieveRecipes() {
+        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getRecipes().observe(this, new Observer<List<Recipe>>() {
+            @Override
+            public void onChanged(@Nullable final List<Recipe> recipes) {
+                //set recipes to adapter
+                //run on UI thread so we can notify and change data
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.setRecipes(recipes);
+                    }
+                });
+
+            }
+        });
+    }
 
     //onClick method for RV
     @Override
     public void onClick(int recipeId) {
         Intent intent = new Intent(this, RecipeViewActivity.class);
-        intent.putExtra("jedna", recipeId);
+        intent.putExtra(AppConstants.SELECTED_RECIPE_EXTRA_KEY, recipeId);
         startActivity(intent);
         Toast.makeText(this, "" + recipeId, Toast.LENGTH_SHORT).show();
     }
+
+
 }

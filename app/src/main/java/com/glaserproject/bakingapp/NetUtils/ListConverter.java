@@ -49,7 +49,8 @@ public class ListConverter {
             return Collections.emptyList();
         }
 
-        Type listType = new TypeToken<List<Ingredient>>() {}.getType();
+        Type listType = new TypeToken<List<Step>>() {
+        }.getType();
 
         return gson.fromJson(data, listType);
     }

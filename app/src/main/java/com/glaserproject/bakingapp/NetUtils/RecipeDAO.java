@@ -9,6 +9,7 @@ import android.arch.persistence.room.Update;
 
 
 import com.glaserproject.bakingapp.Objects.Recipe;
+import com.glaserproject.bakingapp.Objects.Step;
 
 import java.util.List;
 
@@ -29,5 +30,8 @@ public interface RecipeDAO {
 
     @Query("SELECT * FROM recipes WHERE id = :id")
     Recipe loadRecipe(int id);
+
+    @Query("SELECT * FROM recipes WHERE id = :id")
+    List<Step> loadSteps(int id);
 
 }

@@ -32,4 +32,8 @@ public class Recipe {
         this.servings = servings;
         this.image = image;
     }
+
+    public List<Step> getSteps() {
+        return this.steps;
+    }
 }

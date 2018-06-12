@@ -2,27 +2,27 @@ package com.glaserproject.bakingapp.ViewModels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
 import com.glaserproject.bakingapp.Objects.Recipe;
+import com.glaserproject.bakingapp.Objects.Step;
 
 import java.util.List;
 
-public class MainViewModel extends AndroidViewModel {
+public class StepsViewModel extends AndroidViewModel {
 
-    private LiveData<List<Recipe>> recipes;
+    private List<Step> steps;
 
-    public MainViewModel(@NonNull Application application) {
+    public StepsViewModel(@NonNull Application application, int id) {
         super(application);
 
         RecipeDatabase mDb = RecipeDatabase.getInstance(this.getApplication());
-        recipes = mDb.recipeDAO().loadAllRecipes();
+        steps = mDb.recipeDAO().loadSteps(id);
     }
 
-    public LiveData<List<Recipe>> getRecipes(){
-        return recipes;
+    public List<Step> getSteps() {
+        return steps;
     }
 
 
