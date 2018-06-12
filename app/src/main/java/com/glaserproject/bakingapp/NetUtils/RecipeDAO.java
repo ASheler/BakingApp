@@ -21,9 +21,6 @@ public interface RecipeDAO {
     @Update(onConflict = OnConflictStrategy.IGNORE)
     void updateRecipe(List<Recipe> recipe);
 
-    @Query("SELECT * FROM recipes ORDER BY id")
-    List<Recipe> fetchRecipes();
-
     @Insert
     void insertRecipe(Recipe recipe);
 

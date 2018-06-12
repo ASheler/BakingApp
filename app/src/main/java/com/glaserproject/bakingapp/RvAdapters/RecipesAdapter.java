@@ -15,10 +15,23 @@ import java.util.List;
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder> {
 
     private List<Recipe> recipes;
+    private final RecipesAdapterOnClickHandler mClickHandler;
 
+    //init with ClickHandler
+    public RecipesAdapter(RecipesAdapterOnClickHandler clickHandler) {
+        this.mClickHandler = clickHandler;
+    }
+
+    //set recipes into adapter
     public void setRecipes (List<Recipe> recipes){
         this.recipes = recipes;
+        //notify adapter of chnage
         notifyDataSetChanged();
+    }
+
+    //Click Interface
+    public interface RecipesAdapterOnClickHandler {
+        void onClick(int recipeId);
     }
 
     @NonNull
@@ -42,7 +55,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         return recipes.size();
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder {
+    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView nameTV;
 
@@ -51,6 +64,8 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
 
             nameTV = itemView.findViewById(R.id.name_tv);
 
+            itemView.setOnClickListener(this);
+
         }
 
         void bind (int index){
@@ -58,7 +73,13 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         }
 
 
+        @Override
+        public void onClick(View v) {
 
+            //get ID of item, not adapter position
+            mClickHandler.onClick(recipes.get(getAdapterPosition()).id);
+
+        }
     }
 
 

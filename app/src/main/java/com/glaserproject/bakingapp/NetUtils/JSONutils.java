@@ -23,8 +23,7 @@ import java.util.Scanner;
 
 public class JSONutils {
 
-    //URL variables https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json
-
+    //URL variables
     private final static String RECIPE_JSON_BASE = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking";
     private final static String RECIPE_JSON_APPEND = "baking.json";
 
@@ -57,7 +56,7 @@ public class JSONutils {
 
 
     public static URL buildUrl() {
-
+        //build URL
         Uri builtUri = Uri.parse(RECIPE_JSON_BASE).buildUpon()
                 .appendPath(RECIPE_JSON_APPEND)
                 .build();
@@ -72,7 +71,7 @@ public class JSONutils {
     }
 
 
-
+    //Parse JSON to List<Recipe>
     public static List<Recipe> parseJSON(String json) throws JSONException {
 
         Gson gson = new Gson();

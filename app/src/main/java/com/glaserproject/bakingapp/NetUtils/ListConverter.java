@@ -11,16 +11,18 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-
+//List converters for DB
 public class ListConverter {
 
-    static Gson gson = new Gson();
+    private static Gson gson = new Gson();
 
+    //Ingredients List to String
     @TypeConverter
     public static String ingredientsToString(List<Ingredient> ingredients){
         return gson.toJson(ingredients);
     }
 
+    //String to Ingredients List
     @TypeConverter
     public static List<Ingredient> stringToIngredients(String data){
         if (data == null){
@@ -33,11 +35,14 @@ public class ListConverter {
     }
 
 
+    //Steps List to string
     @TypeConverter
     public static String stepsToString(List<Step> steps){
         return gson.toJson(steps);
     }
 
+
+    //String to StepsList
     @TypeConverter
     public static List<Step> stringToSteps(String data){
         if (data == null){

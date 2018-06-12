@@ -1,12 +1,10 @@
 package com.glaserproject.bakingapp.NetUtils;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.glaserproject.bakingapp.Objects.Recipe;
 
@@ -21,6 +19,7 @@ public abstract class RecipeDatabase extends RoomDatabase {
     public static RecipeDatabase getInstance(final Context context){
         if (sInstance == null){
             synchronized (LOCK){
+                //build DB
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
                         RecipeDatabase.class,
                         DB_NAME)
@@ -30,5 +29,6 @@ public abstract class RecipeDatabase extends RoomDatabase {
         return sInstance;
     }
 
+    //call for DAO
     public abstract RecipeDAO recipeDAO();
 }

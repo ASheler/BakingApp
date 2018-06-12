@@ -9,6 +9,7 @@ import com.glaserproject.bakingapp.Objects.Recipe;
 
 import java.util.List;
 
+//AsyncTask Loader
 public class ATLoader extends AsyncTaskLoader<List<Recipe>> {
 
     public ATLoader(@NonNull Context context) {

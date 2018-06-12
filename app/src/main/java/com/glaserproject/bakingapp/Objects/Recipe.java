@@ -9,6 +9,7 @@ import com.glaserproject.bakingapp.NetUtils.ListConverter;
 
 import java.util.List;
 
+//set up table via ROOM
 @Entity(tableName = "recipes")
 public class Recipe {
 
@@ -21,6 +22,7 @@ public class Recipe {
     public List<Step> steps;
     public int servings;
     public String image;
+
 
     public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, String image) {
         this.id = id;
