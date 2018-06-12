@@ -37,8 +37,11 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     //LifeCycle
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    implementation "android.arch.lifecycle:viewmodel:1.1.1"
+    def lifecycle_version = "1.1.1"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    implementation "android.arch.lifecycle:viewmodel:$lifecycle_version"
+    implementation "android.arch.lifecycle:livedata:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
 
 
     testImplementation 'junit:junit:4.12'

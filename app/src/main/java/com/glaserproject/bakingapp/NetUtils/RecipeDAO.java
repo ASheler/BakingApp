@@ -1,8 +1,11 @@
 package com.glaserproject.bakingapp.NetUtils;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 
 import com.glaserproject.bakingapp.Objects.Recipe;
@@ -13,12 +16,18 @@ import java.util.List;
 public interface RecipeDAO {
 
     @Query("SELECT * FROM recipes ORDER BY id")
-    List<Recipe> loadAllRecipes();
+    LiveData<List<Recipe>> loadAllRecipes();
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    void updateRecipe(List<Recipe> recipe);
+
+    @Query("SELECT * FROM recipes ORDER BY id")
+    List<Recipe> fetchRecipes();
 
     @Insert
     void insertRecipe(Recipe recipe);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertRecipes(List<Recipe> recipes);
 
     @Query("SELECT * FROM recipes WHERE id = :id")

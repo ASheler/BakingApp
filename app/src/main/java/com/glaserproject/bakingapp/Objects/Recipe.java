@@ -12,7 +12,7 @@ import java.util.List;
 @Entity(tableName = "recipes")
 public class Recipe {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     public int id;
     public String name;
     @TypeConverters(ListConverter.class)

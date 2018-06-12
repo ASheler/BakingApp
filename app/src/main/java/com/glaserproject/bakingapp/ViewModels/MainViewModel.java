@@ -2,6 +2,7 @@ package com.glaserproject.bakingapp.ViewModels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
 
-    private List<Recipe> recipes;
+    private LiveData<List<Recipe>> recipes;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -21,7 +22,7 @@ public class MainViewModel extends AndroidViewModel {
 
     }
 
-    public List<Recipe> getRecipes(){
+    public LiveData<List<Recipe>> getRecipes(){
         return recipes;
     }
 
