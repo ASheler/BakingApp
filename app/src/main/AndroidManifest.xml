@@ -21,6 +21,7 @@
         </activity>
         <activity
             android:name=".RecipeViewActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".StepViewActivity"

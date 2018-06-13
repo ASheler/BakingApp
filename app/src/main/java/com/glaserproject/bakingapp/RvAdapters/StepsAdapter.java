@@ -91,7 +91,7 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     //click interface
     public interface StepsAdapterOnClickHandler {
-        void onClick(int stepId);
+        void onClick(Step step);
     }
 
     //viewHolder for Ingredients
@@ -123,7 +123,7 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         @Override
         public void onClick(View v) {
-            mClickHandler.onClick(steps.get(getAdapterPosition() - 1).id);
+            mClickHandler.onClick(steps.get(getAdapterPosition() - 1));
         }
     }
 }

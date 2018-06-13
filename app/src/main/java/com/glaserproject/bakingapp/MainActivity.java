@@ -25,6 +25,7 @@ import com.glaserproject.bakingapp.NetUtils.ATLoader;
 import com.glaserproject.bakingapp.NetUtils.AppExecutors;
 import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
 import com.glaserproject.bakingapp.Objects.Recipe;
+import com.glaserproject.bakingapp.Objects.Step;
 import com.glaserproject.bakingapp.RvAdapters.RecipesAdapter;
 import com.glaserproject.bakingapp.ViewModels.MainViewModel;
 
@@ -171,11 +172,10 @@ public class MainActivity extends AppCompatActivity
 
     //onClick method for RV
     @Override
-    public void onClick(int recipeId) {
+    public void onClick(Recipe recipe) {
         Intent intent = new Intent(this, RecipeViewActivity.class);
-        intent.putExtra(AppConstants.SELECTED_RECIPE_EXTRA_KEY, recipeId);
+        intent.putExtra(AppConstants.RECIPE_EXTRA_KEY, recipe);
         startActivity(intent);
-        Toast.makeText(this, "" + recipeId, Toast.LENGTH_SHORT).show();
     }
 
 

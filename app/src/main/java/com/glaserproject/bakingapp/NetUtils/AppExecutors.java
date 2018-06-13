@@ -15,15 +15,19 @@ public class AppExecutors {
     private final Executor mainThread;
     private final Executor networkIO;
 
+    //init Executors
     private AppExecutors(Executor diskIO, Executor networkIO, Executor mainThread){
         this.diskIO = diskIO;
         this.mainThread = mainThread;
         this.networkIO = networkIO;
     }
 
+    //instantiate executors
     public static AppExecutors getsInstance(){
+        //make sure only one instance runs
         if (sInstance == null){
             synchronized (LOCK){
+                //run instance
                 sInstance = new AppExecutors(Executors.newSingleThreadExecutor(),
                         Executors.newFixedThreadPool(3),
                         new MainThreadExecutor());

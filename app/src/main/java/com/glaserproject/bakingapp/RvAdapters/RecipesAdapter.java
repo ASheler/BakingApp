@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.glaserproject.bakingapp.Objects.Recipe;
+import com.glaserproject.bakingapp.Objects.Step;
 import com.glaserproject.bakingapp.R;
 
 import java.util.List;
@@ -29,17 +30,19 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         notifyDataSetChanged();
     }
 
-    //Click Interface
-    public interface RecipesAdapterOnClickHandler {
-        void onClick(int recipeId);
-    }
-
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //Inflate layout
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.recipe_tile_main, parent, false);
+        //return inflated layout
         return new RecipeViewHolder(view);
+    }
+
+    //Click Interface
+    public interface RecipesAdapterOnClickHandler {
+        void onClick(Recipe recipe);
     }
 
     @Override
@@ -55,15 +58,19 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         return recipes.size();
     }
 
+    //ViewHolder Class
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        //init UI variables
         TextView nameTV;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
 
+            //Find by ID
             nameTV = itemView.findViewById(R.id.name_tv);
 
+            //set Click listeners to ItemView
             itemView.setOnClickListener(this);
 
         }
@@ -77,7 +84,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         public void onClick(View v) {
 
             //get ID of item, not adapter position
-            mClickHandler.onClick(recipes.get(getAdapterPosition()).id);
+            mClickHandler.onClick(recipes.get(getAdapterPosition()));
 
         }
     }
