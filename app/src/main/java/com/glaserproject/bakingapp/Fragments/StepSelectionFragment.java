@@ -18,14 +18,14 @@ import com.glaserproject.bakingapp.Objects.Recipe;
 import com.glaserproject.bakingapp.R;
 import com.glaserproject.bakingapp.RecipeViewActivity;
 import com.glaserproject.bakingapp.RvAdapters.StepsAdapter;
+import com.glaserproject.bakingapp.RvAdapters.StepsAdapter1;
 
 
-
-public class StepSelectionFragment extends Fragment implements StepsAdapter.StepsAdapterOnClickHandler {
+public class StepSelectionFragment extends Fragment implements StepsAdapter1.StepsAdapterOnClickHandler {
 
     OnStepClickListener mCallback;
     RecyclerView stepsListRV;
-    StepsAdapter mAdapter;
+    StepsAdapter1 mAdapter;
     RecipeDatabase mDb;
 
     //mandatory empty builder
@@ -65,7 +65,7 @@ public class StepSelectionFragment extends Fragment implements StepsAdapter.Step
         stepsListRV.setLayoutManager(layoutManager);
 
         //setup adapter with clickHandler
-        mAdapter = new StepsAdapter(this);
+        mAdapter = new StepsAdapter1(this);
 
         stepsListRV.setAdapter(mAdapter);
 

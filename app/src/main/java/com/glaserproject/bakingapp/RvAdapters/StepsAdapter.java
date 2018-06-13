@@ -114,7 +114,7 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     //stepsViewHolder
-    class ViewHolderX extends RecyclerView.ViewHolder {
+    class ViewHolderX extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView shortDescriptionTV;
 
@@ -124,5 +124,9 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             shortDescriptionTV = itemView.findViewById(R.id.short_description_tv);
         }
 
+        @Override
+        public void onClick(View v) {
+            mClickHandler.onClick(33);
+        }
     }
 }
