@@ -66,6 +66,7 @@ public class StepSelectionFragment extends Fragment implements StepsAdapter.Step
         //setup adapter with clickHandler
         mAdapter = new StepsAdapter(this);
 
+
         stepsListRV.setAdapter(mAdapter);
 
         //get recipes from Db

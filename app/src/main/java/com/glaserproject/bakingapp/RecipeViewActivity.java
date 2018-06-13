@@ -50,7 +50,7 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
     public void onStepClick(int stepId) {
         if (mTwoPane) {
             //change the fragment source
-            Toast.makeText(this, "Item clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Item " + stepId + " clicked", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, StepViewActivity.class);
             intent.putExtra(AppConstants.STEP_EXTRA_KEY, stepId);

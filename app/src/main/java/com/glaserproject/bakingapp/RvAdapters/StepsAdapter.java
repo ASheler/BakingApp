@@ -95,7 +95,7 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     //viewHolder for Ingredients
-    public class IngredientsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class IngredientsViewHolder extends RecyclerView.ViewHolder {
 
         TextView ingredientsLabelTV;
 
@@ -103,14 +103,9 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             super(itemView);
 
             ingredientsLabelTV = itemView.findViewById(R.id.ingredients_label_tv);
+
         }
 
-
-        @Override
-        public void onClick(View v) {
-            //TODO: change 2 (placeholder) for actual stepID
-            mClickHandler.onClick(2);
-        }
     }
 
     //stepsViewHolder
@@ -122,11 +117,13 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             super(itemView);
 
             shortDescriptionTV = itemView.findViewById(R.id.short_description_tv);
+
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            mClickHandler.onClick(33);
+            mClickHandler.onClick(steps.get(getAdapterPosition() - 1).id);
         }
     }
 }
