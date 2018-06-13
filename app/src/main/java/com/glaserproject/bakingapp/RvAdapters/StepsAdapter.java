@@ -44,8 +44,8 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (steps == null) {
             return 0;
         }
-        //TODO: check for actual size (+1??)
-        return steps.size();
+
+        return steps.size() + 1;
     }
 
     @NonNull
