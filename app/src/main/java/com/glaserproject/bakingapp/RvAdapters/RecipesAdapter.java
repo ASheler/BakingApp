@@ -11,7 +11,12 @@ import com.glaserproject.bakingapp.Objects.Recipe;
 import com.glaserproject.bakingapp.Objects.Step;
 import com.glaserproject.bakingapp.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder> {
 
@@ -62,13 +67,17 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //init UI variables
+        @BindView(R.id.name_tv)
         TextView nameTV;
+        @BindView(R.id.servings_number_tv)
+        TextView servingsNumberTv;
+        @BindView(R.id.steps_number_tv)
+        TextView stepsNumberTv;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
-
-            //Find by ID
-            nameTV = itemView.findViewById(R.id.name_tv);
+            //Bind views with butterKnife
+            ButterKnife.bind(this, itemView);
 
             //set Click listeners to ItemView
             itemView.setOnClickListener(this);
@@ -76,7 +85,13 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         }
 
         void bind (int index){
+
+            String nOfServings = "" + recipes.get(index).servings;
+            String nOfSteps = "" + recipes.get(index).steps.size();
+
             nameTV.setText(recipes.get(index).name);
+            servingsNumberTv.setText(nOfServings);
+            stepsNumberTv.setText(nOfSteps);
         }
 
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BakingApp</string>
+    <string name="steps_main_tile_label">Steps:</string>
+    <string name="servings_main_tile_label">Servings:</string>
 </resources>

@@ -127,13 +127,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 //hide progress bar
-                progressBar.setVisibility(View.INVISIBLE);
+
                 //insert recipes into DB
                 mDb.recipeDAO().insertRecipes(recipes);
                 //load recipes
                 retrieveRecipes();
             }
         });
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
 
