@@ -8,11 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.glaserproject.bakingapp.Fragments.StepSelectionFragment;
+import com.glaserproject.bakingapp.Objects.Ingredient;
 import com.glaserproject.bakingapp.Objects.Recipe;
 import com.glaserproject.bakingapp.Objects.Step;
 import com.glaserproject.bakingapp.R;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -73,8 +77,11 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             case 0:
                 IngredientsViewHolder viewHolder0 = (IngredientsViewHolder) holder;
 
+                //build text
+                String ingredients = ingredientsTextBuilder();
+
                 //set text
-                viewHolder0.ingredientsLabelTV.setText("Ingredients");
+                viewHolder0.ingredientsListTV.setText(ingredients);
 
                 break;
             default:
@@ -94,16 +101,33 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         void onClick(Step step);
     }
 
+    public String ingredientsTextBuilder() {
+        String ingredients;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Ingredient ingredient : recipe.ingredients) {
+            stringBuilder.append(ingredient.getIngredient());
+            stringBuilder.append(" - ");
+            stringBuilder.append(ingredient.getQuantity());
+            stringBuilder.append(" ");
+            stringBuilder.append(ingredient.getMeasure());
+            stringBuilder.append("\n \n");
+        }
+
+        ingredients = stringBuilder.toString();
+
+        return ingredients;
+    }
+
     //viewHolder for Ingredients
     public class IngredientsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ingredientsLabelTV;
+        @BindView(R.id.ingredients_list_tv)
+        TextView ingredientsListTV;
 
         public IngredientsViewHolder(View itemView) {
             super(itemView);
-
-            ingredientsLabelTV = itemView.findViewById(R.id.ingredients_label_tv);
-
+            ButterKnife.bind(this, itemView);
         }
 
     }
@@ -111,12 +135,12 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     //stepsViewHolder
     class ViewHolderX extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        @BindView(R.id.short_description_tv)
         TextView shortDescriptionTV;
 
         public ViewHolderX(View itemView) {
             super(itemView);
-
-            shortDescriptionTV = itemView.findViewById(R.id.short_description_tv);
+            ButterKnife.bind(this, itemView);
 
             itemView.setOnClickListener(this);
         }
@@ -126,4 +150,5 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mClickHandler.onClick(steps.get(getAdapterPosition() - 1));
         }
     }
+
 }

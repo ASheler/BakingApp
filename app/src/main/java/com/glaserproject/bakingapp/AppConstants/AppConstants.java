@@ -5,4 +5,9 @@ public class AppConstants {
     public static final String STEP_EXTRA_KEY = "selected step";
     public static final String STEP_BUNDLE_KEY = "step bundle";
     public static final String RECIPE_EXTRA_KEY = "recipe key";
+    public static final String RECIPE_BUNDLE_KEY = "recipe bundle";
+    public static final String BUNDLE_EXTRA_KEY = "bundle key";
+    public static final String SAVED_INSTANCE_STEP_KEY = "instance step key";
+    public static final String SAVED_INSTANCE_STEP_ID_KEY = "instance step id key";
+    public static final String SAVED_INSTANCE_RECIPE_KEY = "instance recipe key";
 }
