@@ -28,6 +28,16 @@
         <activity
             android:name=".StepViewActivity"
             android:parentActivityName=".RecipeViewActivity" />
+
+        <receiver android:name=".Widgets.IngredientsWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ingredients_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

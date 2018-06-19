@@ -1,8 +1,10 @@
 package com.glaserproject.bakingapp.NetUtils;
 
+import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
+import com.glaserproject.bakingapp.Objects.Ingredient;
 import com.glaserproject.bakingapp.Objects.Recipe;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -83,6 +85,28 @@ public class JSONutils {
         return recipe;
     }
 
+
+    public static String getIng(Context context) {
+
+        RecipeDatabase mDb = RecipeDatabase.getInstance(context);
+        Recipe recipe = mDb.recipeDAO().loadRecipe(1);
+        String ingredients;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Ingredient ingredient : recipe.ingredients) {
+            stringBuilder.append(ingredient.getIngredient());
+            stringBuilder.append(" - ");
+            stringBuilder.append(ingredient.getQuantity());
+            stringBuilder.append(" ");
+            stringBuilder.append(ingredient.getMeasure());
+            stringBuilder.append("\n \n");
+        }
+
+        ingredients = stringBuilder.toString();
+
+        return ingredients;
+
+    }
 
 
 }
