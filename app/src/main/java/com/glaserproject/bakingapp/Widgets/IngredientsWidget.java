@@ -25,6 +25,7 @@ public class IngredientsWidget extends AppWidgetProvider {
 
 
         //TODO: Proper formatting of widget - ListView?
+        //TODO: set recipe selection screen
         new GetIngredientsAsync(views, appWidgetId, appWidgetManager, context).execute();
 
 
