@@ -29,6 +29,9 @@ public class StepViewActivity extends AppCompatActivity implements StepViewFragm
         step = bundle.getParcelable(AppConstants.STEP_BUNDLE_KEY);
         recipe = bundle.getParcelable(AppConstants.RECIPE_BUNDLE_KEY);
 
+        //set name to Action Bar
+        getSupportActionBar().setTitle(recipe.name);
+
 
         //Setup Fragment
         StepViewFragment stepViewFragment = new StepViewFragment();

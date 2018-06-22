@@ -44,6 +44,10 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
             step = savedInstanceState.getParcelable(AppConstants.SAVED_INSTANCE_STEP_KEY);
             recipe = savedInstanceState.getParcelable(AppConstants.SAVED_INSTANCE_RECIPE_KEY);
         }
+
+        //set name to ActionBar
+        getSupportActionBar().setTitle(recipe.name);
+
         //set Content view for Fragment
         setContentView(R.layout.activity_recipe_view);
 
