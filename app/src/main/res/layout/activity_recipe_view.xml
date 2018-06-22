@@ -3,4 +3,4 @@
     android:layout_height="match_parent"
     android:id="@+id/step_selection_fragment"
     android:name="com.glaserproject.bakingapp.Fragments.StepSelectionFragment"
-    android:layout_width="match_parent"></fragment>
+    android:layout_width="match_parent" />

@@ -2,9 +2,6 @@ package com.glaserproject.bakingapp.Widgets;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,9 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.glaserproject.bakingapp.AppConstants.AppConstants;
 import com.glaserproject.bakingapp.NetUtils.AppExecutors;
@@ -23,8 +17,6 @@ import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
 import com.glaserproject.bakingapp.Objects.Recipe;
 import com.glaserproject.bakingapp.R;
 import com.glaserproject.bakingapp.RvAdapters.RecipesAdapter;
-import com.glaserproject.bakingapp.ViewModels.MainViewModel;
-
 import java.util.List;
 
 public class IngredientsWidgetConfigureActivity extends Activity implements RecipesAdapter.RecipesAdapterOnClickHandler {
@@ -86,7 +78,7 @@ public class IngredientsWidgetConfigureActivity extends Activity implements Reci
         }
         if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
-            return;
+
         }
 
     }

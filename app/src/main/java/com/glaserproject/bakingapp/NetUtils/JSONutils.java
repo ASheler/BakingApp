@@ -2,16 +2,11 @@ package com.glaserproject.bakingapp.NetUtils;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 
 import com.glaserproject.bakingapp.Objects.Ingredient;
 import com.glaserproject.bakingapp.Objects.Recipe;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -74,7 +69,7 @@ public class JSONutils {
 
 
     //Parse JSON to List<Recipe>
-    public static List<Recipe> parseJSON(String json) throws JSONException {
+    public static List<Recipe> parseJSON(String json) {
 
         Gson gson = new Gson();
 

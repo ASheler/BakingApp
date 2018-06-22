@@ -5,7 +5,5 @@
     <string name="ingredients_tile_label">Ingredients:</string>
     <string name="previous_step_label">PREVIOUS STEP</string>
     <string name="next_step_label">NEXT STEP</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
     <string name="widget_config_title">Select Recipe</string>
 </resources>

@@ -12,9 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.glaserproject.bakingapp.NetUtils.AppExecutors;
 import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
-import com.glaserproject.bakingapp.Objects.Recipe;
 import com.glaserproject.bakingapp.Objects.Step;
 import com.glaserproject.bakingapp.R;
 import com.glaserproject.bakingapp.RecipeViewActivity;

@@ -11,10 +11,6 @@ import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
 import com.glaserproject.bakingapp.AppConstants.AppConstants;
-import com.glaserproject.bakingapp.MainActivity;
-import com.glaserproject.bakingapp.NetUtils.AppExecutors;
-import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
-import com.glaserproject.bakingapp.Objects.Recipe;
 import com.glaserproject.bakingapp.R;
 import com.glaserproject.bakingapp.RecipeViewActivity;
 

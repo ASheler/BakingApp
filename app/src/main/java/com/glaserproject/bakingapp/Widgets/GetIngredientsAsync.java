@@ -1,16 +1,13 @@
 package com.glaserproject.bakingapp.Widgets;
 
-import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.RemoteViews;
 
 import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
 import com.glaserproject.bakingapp.Objects.Ingredient;
 import com.glaserproject.bakingapp.Objects.Recipe;
-import com.glaserproject.bakingapp.R;
 
 import java.lang.ref.WeakReference;
 

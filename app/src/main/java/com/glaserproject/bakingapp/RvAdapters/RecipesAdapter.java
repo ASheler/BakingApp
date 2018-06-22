@@ -8,10 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.glaserproject.bakingapp.Objects.Recipe;
-import com.glaserproject.bakingapp.Objects.Step;
 import com.glaserproject.bakingapp.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
