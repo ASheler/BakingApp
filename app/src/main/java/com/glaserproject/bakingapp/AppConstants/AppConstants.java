@@ -13,7 +13,11 @@ public class AppConstants {
 
     public static final String PREFS_NAME = "com.glaserproject.bakingapp.IngredientsWidget";
     public static final String PREF_PREFIX_KEY = "ingredients_widget_";
+    public static final String PREFS_RECIPE_NAME = "preferences recipe name";
 
     public static final String APP_WIDGET_ID_KEY = "app widget id";
+
+    public static final String LIST_ITEM_EXTRA_KEY = "list item extra key";
+
 
 }

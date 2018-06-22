@@ -39,9 +39,10 @@ public class IngredientsWidgetConfigureActivity extends Activity implements Reci
     }
 
     //save recipeId into SharedPrefs
-    static void saveSelectedRecipe(Context context, int appWidgetId, int selectedRecipe) {
+    static void saveSelectedRecipe(Context context, int appWidgetId, int selectedRecipe, String recipeName) {
         SharedPreferences.Editor prefs = context.getSharedPreferences(AppConstants.PREFS_NAME, 0).edit();
         prefs.putInt(AppConstants.PREF_PREFIX_KEY + appWidgetId, selectedRecipe);
+        prefs.putString(AppConstants.PREFS_RECIPE_NAME + appWidgetId, recipeName);
         prefs.apply();
     }
 
@@ -96,7 +97,8 @@ public class IngredientsWidgetConfigureActivity extends Activity implements Reci
 
         // When the button is clicked, store the recipe Id
         int selectedRecipe = recipe.id;
-        saveSelectedRecipe(context, mAppWidgetId, selectedRecipe);
+        String recipeName = recipe.name;
+        saveSelectedRecipe(context, mAppWidgetId, selectedRecipe, recipeName);
 
         // It is the responsibility of the configuration activity to update the app widget
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
