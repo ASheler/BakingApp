@@ -1,5 +1,6 @@
 package com.glaserproject.bakingapp.Widgets;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -7,6 +8,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
 
+import com.glaserproject.bakingapp.AppConstants.AppConstants;
+import com.glaserproject.bakingapp.MainActivity;
 import com.glaserproject.bakingapp.R;
 
 /**
@@ -14,20 +17,18 @@ import com.glaserproject.bakingapp.R;
  */
 public class IngredientsWidget extends AppWidgetProvider {
 
-    String text;
 
-    void updateAppWidget(final Context context, AppWidgetManager appWidgetManager,
-                         int appWidgetId) {
-        // Construct the RemoteViews object
-        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredients_widget);
+    static void updateAppWidget(final Context context, AppWidgetManager appWidgetManager,
+                                int appWidgetId) {
 
-        //fetch data and set in view
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredients_widget_layout);
+
+        Intent intent = new Intent(context, WidgetRemoteViewsService.class);
+        intent.putExtra(AppConstants.APP_WIDGET_ID_KEY, appWidgetId);
+        views.setRemoteAdapter(R.id.widget_list_view, intent);
 
 
-        //TODO: Proper formatting of widget - ListView?
-        //TODO: set recipe selection screen
-        new GetIngredientsAsync(views, appWidgetId, appWidgetManager, context).execute();
-
+        //TODO: recipes are not changing in different widgets
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -36,10 +37,26 @@ public class IngredientsWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
+
+            //updateAppWidget(context, appWidgetManager, appWidgetId);
+
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredients_widget_layout);
+
+            Intent intent = new Intent(context, WidgetRemoteViewsService.class);
+            intent.putExtra(AppConstants.APP_WIDGET_ID_KEY, appWidgetId);
+            views.setRemoteAdapter(R.id.widget_list_view, intent);
+
+
+            //TODO: recipes are not changing in different widgets
+
+            // Instruct the widget manager to update the widget
+            appWidgetManager.updateAppWidget(appWidgetId, views);
+
         }
+
     }
 
     @Override

@@ -10,4 +10,10 @@ public class AppConstants {
     public static final String SAVED_INSTANCE_STEP_KEY = "instance step key";
     public static final String SAVED_INSTANCE_STEP_ID_KEY = "instance step id key";
     public static final String SAVED_INSTANCE_RECIPE_KEY = "instance recipe key";
+
+    public static final String PREFS_NAME = "com.glaserproject.bakingapp.IngredientsWidget";
+    public static final String PREF_PREFIX_KEY = "ingredients_widget_";
+
+    public static final String APP_WIDGET_ID_KEY = "app widget id";
+
 }

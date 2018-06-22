@@ -19,6 +19,9 @@ public interface RecipeDAO {
     @Query("SELECT * FROM recipes ORDER BY id")
     LiveData<List<Recipe>> loadAllRecipes();
 
+    @Query("SELECT * FROM recipes ORDER BY id")
+    List<Recipe> loadRecipesList();
+
     @Update(onConflict = OnConflictStrategy.IGNORE)
     void updateRecipe(List<Recipe> recipe);
 

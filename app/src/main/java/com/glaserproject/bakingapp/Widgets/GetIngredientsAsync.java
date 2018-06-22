@@ -51,7 +51,7 @@ public class GetIngredientsAsync extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        views.setTextViewText(R.id.ingredients_widget_tv, s);
+        //views.setTextViewText(R.id.ingredients_widget_tv, s);
         widgetManager.updateAppWidget(widgetID, views);
     }
 }
