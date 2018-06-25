@@ -74,10 +74,10 @@ public class ClicksThroughActivitiesTest {
         //check if actionBar title is the same as clicked item
         onView(allOf(isDescendantOfA(withResourceName("android:id/action_bar_container")), withText(recipeName)));
 
+        //Click on Step
         clickOnItem(R.id.step_selection_rv, stepName);
 
-        waitTime();
-
+        //check if recipe introduction loads
         onView(allOf(withId(R.id.description_tv), withText(stepName)));
 
 
