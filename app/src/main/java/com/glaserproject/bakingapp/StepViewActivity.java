@@ -48,7 +48,7 @@ public class StepViewActivity extends AppCompatActivity implements StepViewFragm
         //Fire up FragManager and show Fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .add(R.id.step_view_layout, stepViewFragment)
+                .replace(R.id.step_view_layout, stepViewFragment)
                 .commit();
     }
 
