@@ -14,20 +14,27 @@ public class StepViewActivity extends AppCompatActivity implements StepViewFragm
 
     Recipe recipe;
     Step step;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_view);
 
-        //get Step from from incoming intent
-        Intent intent = getIntent();
-        Bundle bundle = new Bundle();
-        bundle = intent.getBundleExtra(AppConstants.BUNDLE_EXTRA_KEY);
+        if (savedInstanceState == null) {
+            //get Step from from incoming intent
+            Intent intent = getIntent();
+            bundle = intent.getBundleExtra(AppConstants.BUNDLE_EXTRA_KEY);
+
+
+        } else {
+            bundle = savedInstanceState.getBundle(AppConstants.SAVED_INSTANCE_BUNDLE_KEY);
+        }
 
         //get Step and Recipe for next use after click
         step = bundle.getParcelable(AppConstants.STEP_BUNDLE_KEY);
         recipe = bundle.getParcelable(AppConstants.RECIPE_BUNDLE_KEY);
+
 
         //set name to Action Bar
         getSupportActionBar().setTitle(recipe.name);
@@ -80,5 +87,12 @@ public class StepViewActivity extends AppCompatActivity implements StepViewFragm
         fragmentManager.beginTransaction()
                 .replace(R.id.step_view_layout, stepViewFragment)
                 .commit();
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBundle(AppConstants.SAVED_INSTANCE_BUNDLE_KEY, bundle);
     }
 }
