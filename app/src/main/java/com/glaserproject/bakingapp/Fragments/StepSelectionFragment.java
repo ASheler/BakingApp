@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
 import com.glaserproject.bakingapp.Objects.Step;
 import com.glaserproject.bakingapp.R;
 import com.glaserproject.bakingapp.RecipeViewActivity;
@@ -24,7 +23,6 @@ public class StepSelectionFragment extends Fragment implements StepsAdapter.Step
     OnStepClickListener mCallback;
     RecyclerView stepsListRV;
     StepsAdapter mAdapter;
-    RecipeDatabase mDb;
 
     //mandatory empty builder
     public StepSelectionFragment() {
@@ -35,6 +33,7 @@ public class StepSelectionFragment extends Fragment implements StepsAdapter.Step
     public void onClick(Step step) {
         mCallback.onStepClick(step);
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -48,6 +47,7 @@ public class StepSelectionFragment extends Fragment implements StepsAdapter.Step
         }
 
     }
+
 
     @Nullable
     @Override
@@ -71,6 +71,8 @@ public class StepSelectionFragment extends Fragment implements StepsAdapter.Step
         return rootView;
     }
 
+
+    //click interface
     public interface OnStepClickListener {
         void onStepClick(Step step);
     }

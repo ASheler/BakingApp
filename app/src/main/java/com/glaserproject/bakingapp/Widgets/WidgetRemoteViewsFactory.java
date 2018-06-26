@@ -20,6 +20,7 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
     private int appWidgetId;
 
 
+    //init Factory
     public WidgetRemoteViewsFactory(Context context, Intent intent) {
         mContext = context;
         appWidgetId = intent.getIntExtra(AppConstants.APP_WIDGET_ID_KEY, 1);
@@ -35,11 +36,13 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
         final long identityToken = Binder.clearCallingIdentity();
 
+        //init db
         RecipeDatabase mDb = RecipeDatabase.getInstance(mContext);
+        //get recipe id from shared prefs
         SharedPreferences prefs = mContext.getSharedPreferences(AppConstants.PREFS_NAME, 0);
         recipeId = prefs.getInt(AppConstants.PREF_PREFIX_KEY + appWidgetId, 9999);
 
-
+        //get recipe
         recipe = mDb.recipeDAO().loadRecipe(recipeId);
 
 
@@ -71,7 +74,7 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
         RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.widget_list_item);
 
-
+        //build ingredient
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(recipe.ingredients.get(position).getIngredient());
         stringBuilder.append(" (");

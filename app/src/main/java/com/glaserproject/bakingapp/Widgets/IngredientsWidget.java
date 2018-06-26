@@ -17,7 +17,7 @@ import com.glaserproject.bakingapp.RecipeViewActivity;
 import java.util.Random;
 
 /**
- * Implementation of App Widget functionality.
+ * Ingredients widget Provider
  */
 public class IngredientsWidget extends AppWidgetProvider {
 

@@ -16,9 +16,9 @@ public abstract class RecipeDatabase extends RoomDatabase {
     private static final String DB_NAME = "recipes";
     private static RecipeDatabase sInstance;
 
-    public static RecipeDatabase getInstance(final Context context){
-        if (sInstance == null){
-            synchronized (LOCK){
+    public static RecipeDatabase getInstance(final Context context) {
+        if (sInstance == null) {
+            synchronized (LOCK) {
                 //build DB
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
                         RecipeDatabase.class,

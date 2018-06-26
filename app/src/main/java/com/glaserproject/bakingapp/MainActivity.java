@@ -6,17 +6,18 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.glaserproject.bakingapp.AppConstants.AppConstants;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity
     RecyclerView recipeListRV;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+    @BindView(R.id.main_activity_no_connection_tv)
+    TextView noConnectionTV;
 
     //calc the number of columns to create
     public static int calculateNoColumns(Context context) {
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             LoaderManager loaderManager = getSupportLoaderManager();
             Loader<List<Recipe>> loader = loaderManager.getLoader(FETCH_DATA_LOADER_ID);
             //check if loader is running
-            if (loader == null){
+            if (loader == null) {
                 //run new loader
                 loaderManager.initLoader(FETCH_DATA_LOADER_ID, null, this).forceLoad();
             } else {
@@ -100,10 +103,10 @@ public class MainActivity extends AppCompatActivity
 
             //if no connection, print toast
         } else {
+            retrieveRecipes();
+            Toast.makeText(this, R.string.offline_toast_message, Toast.LENGTH_LONG).show();
 
-            Toast.makeText(this, "Connection not available", Toast.LENGTH_SHORT).show();
         }
-
 
 
     }
@@ -141,7 +144,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     //Check if Network connection is available
     public boolean isNetworkAvailable(Context context) {
         //set connectivity manager
@@ -162,6 +164,9 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run() {
                         mAdapter.setRecipes(recipes);
+                        if (mAdapter.getItemCount() == 0) {
+                            noConnectionTV.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
 
@@ -176,6 +181,5 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(AppConstants.RECIPE_EXTRA_KEY, recipe);
         startActivity(intent);
     }
-
 
 }

@@ -100,7 +100,7 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         void onClick(Step step);
     }
 
-    public String ingredientsTextBuilder() {
+    private String ingredientsTextBuilder() {
         String ingredients;
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -124,7 +124,7 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         @BindView(R.id.ingredients_list_tv)
         TextView ingredientsListTV;
 
-        public IngredientsViewHolder(View itemView) {
+        private IngredientsViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -137,7 +137,7 @@ public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         @BindView(R.id.short_description_tv)
         TextView shortDescriptionTV;
 
-        public ViewHolderX(View itemView) {
+        private ViewHolderX(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 

@@ -18,18 +18,19 @@ public class ListConverter {
 
     //Ingredients List to String
     @TypeConverter
-    public static String ingredientsToString(List<Ingredient> ingredients){
+    public static String ingredientsToString(List<Ingredient> ingredients) {
         return gson.toJson(ingredients);
     }
 
     //String to Ingredients List
     @TypeConverter
-    public static List<Ingredient> stringToIngredients(String data){
-        if (data == null){
+    public static List<Ingredient> stringToIngredients(String data) {
+        if (data == null) {
             return Collections.emptyList();
         }
 
-        Type listType = new TypeToken<List<Ingredient>>() {}.getType();
+        Type listType = new TypeToken<List<Ingredient>>() {
+        }.getType();
 
         return gson.fromJson(data, listType);
     }
@@ -37,15 +38,15 @@ public class ListConverter {
 
     //Steps List to string
     @TypeConverter
-    public static String stepsToString(List<Step> steps){
+    public static String stepsToString(List<Step> steps) {
         return gson.toJson(steps);
     }
 
 
     //String to StepsList
     @TypeConverter
-    public static List<Step> stringToSteps(String data){
-        if (data == null){
+    public static List<Step> stringToSteps(String data) {
+        if (data == null) {
             return Collections.emptyList();
         }
 

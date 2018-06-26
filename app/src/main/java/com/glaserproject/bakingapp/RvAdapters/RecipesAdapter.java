@@ -26,9 +26,9 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
     }
 
     //set recipes into adapter
-    public void setRecipes (List<Recipe> recipes){
+    public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
-        //notify adapter of chnage
+        //notify adapter of change
         notifyDataSetChanged();
     }
 
@@ -54,7 +54,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
 
     @Override
     public int getItemCount() {
-        if (recipes == null){
+        if (recipes == null) {
             return 0;
         }
         return recipes.size();
@@ -71,7 +71,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         @BindView(R.id.steps_number_tv)
         TextView stepsNumberTv;
 
-        public RecipeViewHolder(View itemView) {
+        private RecipeViewHolder(View itemView) {
             super(itemView);
             //Bind views with butterKnife
             ButterKnife.bind(this, itemView);
@@ -81,7 +81,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
 
         }
 
-        void bind (int index){
+        void bind(int index) {
 
             String nOfServings = "" + recipes.get(index).servings;
             String nOfSteps = "" + recipes.get(index).steps.size();

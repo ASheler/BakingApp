@@ -1,9 +1,7 @@
 package com.glaserproject.bakingapp.NetUtils;
 
-import android.content.Context;
 import android.net.Uri;
 
-import com.glaserproject.bakingapp.Objects.Ingredient;
 import com.glaserproject.bakingapp.Objects.Recipe;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,7 +21,6 @@ public class JSONutils {
     //URL variables
     private final static String RECIPE_JSON_BASE = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking";
     private final static String RECIPE_JSON_APPEND = "baking.json";
-
 
 
     //get stream from URL
@@ -73,35 +70,12 @@ public class JSONutils {
 
         Gson gson = new Gson();
 
-        Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
+        Type listType = new TypeToken<ArrayList<Recipe>>() {
+        }.getType();
 
         List<Recipe> recipe = gson.fromJson(json, listType);
 
         return recipe;
     }
-
-
-    public static String getIng(Context context) {
-
-        RecipeDatabase mDb = RecipeDatabase.getInstance(context);
-        Recipe recipe = mDb.recipeDAO().loadRecipe(1);
-        String ingredients;
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Ingredient ingredient : recipe.ingredients) {
-            stringBuilder.append(ingredient.getIngredient());
-            stringBuilder.append(" - ");
-            stringBuilder.append(ingredient.getQuantity());
-            stringBuilder.append(" ");
-            stringBuilder.append(ingredient.getMeasure());
-            stringBuilder.append("\n \n");
-        }
-
-        ingredients = stringBuilder.toString();
-
-        return ingredients;
-
-    }
-
 
 }

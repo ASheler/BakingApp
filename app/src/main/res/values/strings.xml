@@ -6,4 +6,7 @@
     <string name="previous_step_label">PREVIOUS STEP</string>
     <string name="next_step_label">NEXT STEP</string>
     <string name="widget_config_title">Select Recipe</string>
+    <string name="offline_toast_message">Connection not available, loaded offline data</string>
+    <string name="no_connection_video_message">no connection, can\'t load video</string>
+    <string name="main_activity_offline_no_recipes_message">No connection and no recipes found offline</string>
 </resources>

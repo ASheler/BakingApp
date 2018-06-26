@@ -1,9 +1,9 @@
 package com.glaserproject.bakingapp;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.glaserproject.bakingapp.AppConstants.AppConstants;
 import com.glaserproject.bakingapp.Fragments.StepViewFragment;
@@ -32,6 +32,7 @@ public class StepViewActivity extends AppCompatActivity implements
             recipe = bundle.getParcelable(AppConstants.RECIPE_BUNDLE_KEY);
 
         } else {
+            //or get data from savedState
             bundle = savedInstanceState.getBundle(AppConstants.SAVED_INSTANCE_BUNDLE_KEY);
             playerPosition = savedInstanceState.getLong(AppConstants.SAVED_INSTANCE_ACTIVITY_PLAYER_POSITION);
             step = bundle.getParcelable(AppConstants.STEP_BUNDLE_KEY);
@@ -66,17 +67,23 @@ public class StepViewActivity extends AppCompatActivity implements
 
     @Override
     public void onPrevClick(int prevStepId) {
+
+        //init fragment
         StepViewFragment stepViewFragment = new StepViewFragment();
 
+        //get step
         Step prevStep = recipe.steps.get(prevStepId);
         step = prevStep;
 
+        //put into bundle
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, prevStep);
         bundle.putParcelable(AppConstants.RECIPE_BUNDLE_KEY, recipe);
 
+        //put into fragment
         stepViewFragment.setArguments(bundle);
 
+        //replace fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.step_view_layout, stepViewFragment)
@@ -87,15 +94,19 @@ public class StepViewActivity extends AppCompatActivity implements
     public void onNextClick(int nextStepId) {
         StepViewFragment stepViewFragment = new StepViewFragment();
 
+        //get step
         Step nextStep = recipe.steps.get(nextStepId);
         step = nextStep;
 
+        //put into bundle
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, nextStep);
         bundle.putParcelable(AppConstants.RECIPE_BUNDLE_KEY, recipe);
 
+        //put into fragment
         stepViewFragment.setArguments(bundle);
 
+        //replace fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.step_view_layout, stepViewFragment)

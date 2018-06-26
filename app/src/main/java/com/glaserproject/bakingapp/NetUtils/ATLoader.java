@@ -16,10 +16,6 @@ public class ATLoader extends AsyncTaskLoader<List<Recipe>> {
         super(context);
     }
 
-    @Override
-    protected void onStartLoading() {
-        super.onStartLoading();
-    }
 
 
     @Nullable

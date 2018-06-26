@@ -17,11 +17,12 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
 
+        //get data from Db
         RecipeDatabase mDb = RecipeDatabase.getInstance(this.getApplication());
         recipes = mDb.recipeDAO().loadAllRecipes();
     }
 
-    public LiveData<List<Recipe>> getRecipes(){
+    public LiveData<List<Recipe>> getRecipes() {
         return recipes;
     }
 

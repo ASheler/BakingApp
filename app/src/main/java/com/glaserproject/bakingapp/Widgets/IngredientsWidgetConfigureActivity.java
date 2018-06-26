@@ -17,6 +17,7 @@ import com.glaserproject.bakingapp.NetUtils.RecipeDatabase;
 import com.glaserproject.bakingapp.Objects.Recipe;
 import com.glaserproject.bakingapp.R;
 import com.glaserproject.bakingapp.RvAdapters.RecipesAdapter;
+
 import java.util.List;
 
 public class IngredientsWidgetConfigureActivity extends Activity implements RecipesAdapter.RecipesAdapterOnClickHandler {
@@ -67,6 +68,7 @@ public class IngredientsWidgetConfigureActivity extends Activity implements Reci
         mAdapter = new RecipesAdapter(this);
         recipeListRV.setAdapter(mAdapter);
 
+        //get recipes
         retrieveRecipes();
 
 
