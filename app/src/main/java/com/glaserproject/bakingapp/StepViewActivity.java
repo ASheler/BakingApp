@@ -10,30 +10,41 @@ import com.glaserproject.bakingapp.Fragments.StepViewFragment;
 import com.glaserproject.bakingapp.Objects.Recipe;
 import com.glaserproject.bakingapp.Objects.Step;
 
-public class StepViewActivity extends AppCompatActivity implements StepViewFragment.OnPrevClickListener, StepViewFragment.OnNextClickListener {
+public class StepViewActivity extends AppCompatActivity implements
+        StepViewFragment.OnPrevClickListener,
+        StepViewFragment.OnNextClickListener,
+        StepViewFragment.SavePlayerPosition {
 
     Recipe recipe;
     Step step;
     Bundle bundle;
+    long playerPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_step_view);
 
         if (savedInstanceState == null) {
             //get Step from from incoming intent
             Intent intent = getIntent();
             bundle = intent.getBundleExtra(AppConstants.BUNDLE_EXTRA_KEY);
-
+            step = bundle.getParcelable(AppConstants.STEP_BUNDLE_KEY);
+            recipe = bundle.getParcelable(AppConstants.RECIPE_BUNDLE_KEY);
 
         } else {
             bundle = savedInstanceState.getBundle(AppConstants.SAVED_INSTANCE_BUNDLE_KEY);
+            playerPosition = savedInstanceState.getLong(AppConstants.SAVED_INSTANCE_ACTIVITY_PLAYER_POSITION);
+            step = bundle.getParcelable(AppConstants.STEP_BUNDLE_KEY);
+            recipe = bundle.getParcelable(AppConstants.RECIPE_BUNDLE_KEY);
         }
 
+
+        setContentView(R.layout.activity_step_view);
+
+
         //get Step and Recipe for next use after click
-        step = bundle.getParcelable(AppConstants.STEP_BUNDLE_KEY);
-        recipe = bundle.getParcelable(AppConstants.RECIPE_BUNDLE_KEY);
+
+        bundle.putLong(AppConstants.PLAYER_POSITION_BUNDLE_KEY, playerPosition);
 
 
         //set name to Action Bar
@@ -58,6 +69,7 @@ public class StepViewActivity extends AppCompatActivity implements StepViewFragm
         StepViewFragment stepViewFragment = new StepViewFragment();
 
         Step prevStep = recipe.steps.get(prevStepId);
+        step = prevStep;
 
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, prevStep);
@@ -76,6 +88,7 @@ public class StepViewActivity extends AppCompatActivity implements StepViewFragm
         StepViewFragment stepViewFragment = new StepViewFragment();
 
         Step nextStep = recipe.steps.get(nextStepId);
+        step = nextStep;
 
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, nextStep);
@@ -93,6 +106,14 @@ public class StepViewActivity extends AppCompatActivity implements StepViewFragm
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, step);
         outState.putBundle(AppConstants.SAVED_INSTANCE_BUNDLE_KEY, bundle);
+        outState.putLong(AppConstants.SAVED_INSTANCE_ACTIVITY_PLAYER_POSITION, playerPosition);
+    }
+
+    @Override
+    public void savePlayerPosition(long savePlayerPosition) {
+        playerPosition = savePlayerPosition;
     }
 }
+
