@@ -13,12 +13,14 @@ import com.glaserproject.bakingapp.Objects.Step;
 
 public class RecipeViewActivity extends AppCompatActivity implements StepSelectionFragment.OnStepClickListener,
         StepViewFragment.OnNextClickListener,
-        StepViewFragment.OnPrevClickListener {
+        StepViewFragment.OnPrevClickListener,
+        StepViewFragment.SavePlayerPosition {
 
     private boolean mTwoPane;
     static Recipe recipe;
     Step step;
     int stepId;
+    long playerPosition;
 
 
     //send Recipe to Master Fragment - Always connected
@@ -43,6 +45,7 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
             stepId = savedInstanceState.getInt(AppConstants.SAVED_INSTANCE_STEP_ID_KEY, 999);
             step = savedInstanceState.getParcelable(AppConstants.SAVED_INSTANCE_STEP_KEY);
             recipe = savedInstanceState.getParcelable(AppConstants.SAVED_INSTANCE_RECIPE_KEY);
+            playerPosition = savedInstanceState.getLong(AppConstants.SAVED_INSTANCE_PLAYER_POSITION);
         }
 
         //set name to ActionBar
@@ -63,6 +66,8 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
             Bundle bundle = new Bundle();
             bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, step);
             bundle.putParcelable(AppConstants.RECIPE_BUNDLE_KEY, recipe);
+            bundle.putLong(AppConstants.PLAYER_POSITION_BUNDLE_KEY, playerPosition);
+            bundle.putBoolean(AppConstants.BUNDLE_IS_TWO_PANE, true);
 
             //init Fragment and insert Bundle
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -94,6 +99,7 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
             Bundle bundle = new Bundle();
             bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, step);
             bundle.putParcelable(AppConstants.RECIPE_BUNDLE_KEY, recipe);
+            bundle.putBoolean(AppConstants.BUNDLE_IS_TWO_PANE, true);
 
             //setup Fragment and add bundle
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -114,6 +120,7 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
             Bundle bundle = new Bundle();
             bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, step);
             bundle.putParcelable(AppConstants.RECIPE_BUNDLE_KEY, recipe);
+            bundle.putBoolean(AppConstants.BUNDLE_IS_TWO_PANE, false);
             intent.putExtra(AppConstants.BUNDLE_EXTRA_KEY, bundle);
             startActivity(intent);
 
@@ -127,6 +134,7 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, step);
         bundle.putParcelable(AppConstants.RECIPE_BUNDLE_KEY, recipe);
+        bundle.putBoolean(AppConstants.BUNDLE_IS_TWO_PANE, true);
 
         //setup Fragment and add bundle
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -146,6 +154,7 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.STEP_BUNDLE_KEY, step);
         bundle.putParcelable(AppConstants.RECIPE_BUNDLE_KEY, recipe);
+        bundle.putBoolean(AppConstants.BUNDLE_IS_TWO_PANE, true);
 
         //setup Fragment and add bundle
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -164,6 +173,13 @@ public class RecipeViewActivity extends AppCompatActivity implements StepSelecti
         outState.putInt(AppConstants.SAVED_INSTANCE_STEP_ID_KEY, stepId);
         outState.putParcelable(AppConstants.SAVED_INSTANCE_STEP_KEY, step);
         outState.putParcelable(AppConstants.SAVED_INSTANCE_RECIPE_KEY, recipe);
+        outState.putLong(AppConstants.SAVED_INSTANCE_PLAYER_POSITION, playerPosition);
+
+    }
+
+    @Override
+    public void savePlayerPosition(long savePlayerPosition) {
+        playerPosition = savePlayerPosition;
 
     }
 }

@@ -10,6 +10,11 @@ public class AppConstants {
     public static final String SAVED_INSTANCE_STEP_KEY = "instance step key";
     public static final String SAVED_INSTANCE_STEP_ID_KEY = "instance step id key";
     public static final String SAVED_INSTANCE_RECIPE_KEY = "instance recipe key";
+    public static final String SAVED_INSTANCE_BUNDLE_KEY = "instance bundle";
+    public static final String SAVED_INSTANCE_PLAYER_POSITION = "player position";
+    public static final String SAVED_INSTANCE_ACTIVITY_PLAYER_POSITION = "activity player position";
+    public static final String PLAYER_POSITION_BUNDLE_KEY = "player position bundle";
+    public static final String BUNDLE_IS_TWO_PANE = "bundle two pane bool";
 
     public static final String PREFS_NAME = "com.glaserproject.bakingapp.IngredientsWidget";
     public static final String PREF_PREFIX_KEY = "ingredients_widget_";
